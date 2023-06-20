@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Salas - Biblioteca</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href='{% static "css/style.css" %}'>
+  <link rel="stylesheet" href='{% static "css/inicio.css" %}'>
+  
+<style>
+nav {
+  background-color: #555;
+  color: #fff;
+  padding: 10px;
+}
+
+nav .nav-item .nav-link:hover {
+  color: black;
+}
+
+nav .nav-item .nav-link.yellow:hover {
+  color: black;
+  font-size: 20px;
+  background-color: #FFB800;
+}
+
+nav .nav-item .nav-link.red:hover {
+  color: black;
+  background-color: rgb(102, 12, 12);
+}
+
+
+footer {
+  background-color: #1A1A1A;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.datetime {
+  font-size: 18px;
+  font-weight: lighter;
+}
+</style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
+    <button class="navbar-toggler" style="background-color: #FFB800;" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+   
+      <ul class="navbar-nav ">
+        
+        <li class="nav-item">
+          <a class="nav-link yellow" href="salas">Salas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link yellow" href="horarios">Horarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link yellow" href="usuarios">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link red" href="/">Cerrar sesión</a>
+        </li>
+    
+      </ul>
+    </div>
+     <nav style="background-color: black;">
+      <ul class="navbar-nav ">
+       
+      <li class="nav-item">
+        <span class="nav-link datetime" id="date"></span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link datetime" id="clock"></span>
+      </li>
+    </ul>
+     </nav>
+    
+  </nav>
+
+  <div class="background-container">
+    <img class="background-image" src="{% static 'img/fondoinicio.jpg' %}" alt="Fondo borroso">
+  </div>
+
+  <div class="container" style="max-width:1500px;margin-top:50px;margin-bottom:80px; background:#666666; border-radius: 70px;">
+
+    <div class="container" style="border-radius: 70px;">
+      <h3 style=" font-family: 'Open Sans', sans-serif;font-size: 40px;color:white; text-decoration: underline;text-shadow: 2px 2px 4px #000000;" align="center">Bienvenid@ {{user.username}}!</h3>
+    </div>
+  </div> 
+  <footer>
+    <br><br>
+    <p>Derechos de autor © 2023 Biblioteca Gestión ágil de Proyecto</p>
+  <br>
+  </footer>
+  <script>
+    // Obtener los elementos de la fecha y el reloj
+    const dateElement = document.getElementById('date');
+    const clockElement = document.getElementById('clock');
+
+    // Función para obtener la fecha y hora actual
+    function getCurrentDateTime() {
+      const now = new Date();
+
+      // Obtener la fecha y formatearla como "Día, Mes Día, Año"
+      const options = { day: '2-digit', month: '2-digit', year: 'numeric'};
+      const formattedDate = now.toLocaleDateString('es-ES', options);
+
+      // Obtener la hora y formatearla como "Hora:MinutosAM/PM"
+      const formattedTime = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+
+      return { date: formattedDate, time: formattedTime };
+    }
+
+    // Función para actualizar la fecha y el reloj cada segundo
+    function updateDateTime() {
+      const { date, time } = getCurrentDateTime();
+      dateElement.textContent = `Fecha: ${date} `;
+      clockElement.textContent = `Hora: ${time}`;
+    }
+
+    // Actualizar la fecha y el reloj inicialmente y cada segundo
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

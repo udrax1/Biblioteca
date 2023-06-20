@@ -1,0 +1,92 @@
+label{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: large;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 150px;
+  padding: 20px;
+  background-color: #ff0000;
+  box-shadow: 0 0 10px rgba(206, 21, 21, 0.1);
+  border-radius: 5px;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.form-control {
+  border-radius: 3px;
+}
+
+.btn-login {
+  width: 100%;
+  background-color: #007bff;
+  border: none;
+  padding: 10px;
+  margin-top: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .login-container {
+      margin-top: 50px;
+  }
+}
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(4px);
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.logo-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+}
+
+.logo {
+
+width: 200px; /* Ancho de la imagen */
+height: 80px; /* Alto de la imagen */
+object-fit: contain; /* Escalar la imagen para que quepa dentro del contenedor sin deformarla */
+border: 1px solid #000; /* Borde de 1 píxel de grosor de color negro */
+border-radius: 5px; /* Borde redondeado de 5 píxeles */
+box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra con desplazamiento de 2 píxeles en eje x e y, y desenfoque de 5 píxeles */
+background-color: #000000; /* Color de fondo blanco */
+
+}
+
+.logo img {
+width: 100%;
+height: auto;
+}
+
+h2 {
+margin: 0;
+}
+
+h4{
+color: white;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}

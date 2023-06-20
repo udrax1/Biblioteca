@@ -1,0 +1,28 @@
+
+h3{
+    color:aqua;
+  }
+
+  nav {
+    background-color: #555;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  nav .nav-item .nav-link:hover {
+    color: black;
+  }
+  
+  nav .nav-item .nav-link.yellow:hover {
+    color: black;
+    background-color: yellow;
+  }
+  
+  
+  
+
+  
+  .datetime {
+    font-size: 18px;
+    font-weight: lighter;
+  }
