@@ -1,0 +1,2 @@
+libreria para add_class
+pip install django-widget-tweaks
