@@ -4,8 +4,11 @@ from django.db import models
 
 class Usuario(models.Model):
     rut= models.CharField(primary_key=True, max_length=9, verbose_name='Rut')
-    nombre= models.CharField(max_length=50, verbose_name='Nombre cliente')
+    nombre= models.CharField(max_length=50, verbose_name='Nombre')
+    apellidos= models.CharField(max_length=50, verbose_name='apellido', default='')
     correo= models.EmailField(verbose_name='E-mail')
+    contraseña= models.CharField(max_length=50, verbose_name='contraseña',default='sincontraseña')
+    contraseña2 = models.CharField(max_length=50, verbose_name='contraseña',default='sincontraseña')
     bloqueado = models.BooleanField(default=False)
 
     def __str__(self):

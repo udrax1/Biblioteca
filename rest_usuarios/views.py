@@ -6,6 +6,9 @@ from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
 from core.models import Usuario
 from .serializers import UsuarioSerializer
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 @csrf_exempt
 @api_view(['GET','POST'])
@@ -44,3 +47,7 @@ def detalle_usuarios (request, id):
     elif request.method == 'DELETE':
         usuario.delete()
         return Response(status= status.HTTP_204_NO_CONTENT)
+    
+
+
+

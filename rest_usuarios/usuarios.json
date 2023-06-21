@@ -1,0 +1,68 @@
+{
+  "usuario": [
+    {
+      "rut": 1,
+      "nombre": "Ignacio",
+      "apellidos": "Salazar Soto",
+      "correo": "ig.salazar@duocuc.cl",
+      "contraseña": "1234",
+      "contraseña2": "1234",
+      "bloqueado": false
+    },
+    {
+      "rut": 2,
+      "nombre": "Manuel",
+      "apellidos": "Diaz Alvarez",
+      "correo": "man.diaza@duocuc.cl",
+      "contraseña": "1234",
+      "contraseña2": "1234",
+      "bloqueado": false
+      
+    },
+    {
+      "rut": 3,
+      "nombre": "Matias",
+      "apellidos": "Salazar",
+      "correo": "ma.salazar@duocuc.cl",
+      "contraseña": "1234",
+      "contraseña2": "1234",
+      "bloqueado": false
+    },
+    {
+      "rut": 4,
+      "nombre": "raul",
+      "apellidos": "perez",
+      "correo": "raul@duocuc.cl",
+      "contraseña": "1234",
+      "contraseña2": "1234",
+      "bloqueado": false
+    },
+    {
+      "rut": 5,
+      "nombre": "Maximiliano",
+      "apellidos": "Blamey",
+      "correo": "Maxi@duocuc.cl",
+      "contraseña": "1234",
+      "contraseña2": "1234",
+      "bloqueado": false
+    },
+    {
+      "rut": 6,
+      "nombre": "Brian",
+      "apellidos": "Urbina",
+      "correo": "brian.urbina@profesor.duoc.cl",
+      "contraseña": "1234",
+      "contraseña2": "1234",
+      "bloqueado": false
+    },
+    {
+      "rut": 7,
+      "nombre": "juanito",
+      "apellidos": "arcoiris",
+      "correo": "j.arcoirrut@profesor.duoc.cl",
+      "contraseña": "hola1234",
+      "contraseña2": "hola1234",
+      "bloqueado": false
+    }
+  ]
+}

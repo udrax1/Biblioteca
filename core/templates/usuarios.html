@@ -114,8 +114,9 @@ footer {
     <table class="table table-bordered" style="color: white; background-color: black;">
         <thead>
             <tr>
-                <th>Rut Alumno</th>
+                <th>Rut</th>
                 <th>Nombre</th>
+                <th>Apellidos</th>
                 <th>Correo</th>
                 <th>Bloqueado</th>
                 <th>Opciones</th>
@@ -127,6 +128,7 @@ footer {
             <tr>
             <td>{{i.rut}}</td>
             <td>{{i.nombre}}</td>
+            <td>{{i.apellidos}}</td>
             <td>{{i.correo}}</td>
             <td class="{% if i.bloqueado %}rojo{% else %}verde{% endif %}">
               {% if i.bloqueado %}Bloqueado{% else %}Sin Bloquear{% endif %}           

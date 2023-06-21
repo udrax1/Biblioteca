@@ -89,7 +89,7 @@ footer {
 <br><br><br><br>
 
 <div class="container-md" style="background-color: black; border: solid 15px #FFB800; color: white;"><br> 
-    <h1 style="text-shadow: 2px 2px red;">Registrar usuario</h1>
+    <h1 style="text-shadow: 2px 2px red;">Modificar usuario</h1>
     <form method="POST" action="#" id="formulario" >
           {%csrf_token%}
           <div class="form-group">
@@ -101,11 +101,23 @@ footer {
               {{form.nombre.label}}
               {{form.nombre}}
           </div>
+          <div class="form-group">
+            {{form.apellidos.label}}
+            {{form.apellidos}}
+        </div>
           
           <div class="form-group">
               {{form.correo.label}}
               {{form.correo}}
           </div>
+          <div class="form-group">
+            {{form.contraseña.label}}
+            {{form.contraseña}}
+          </div>
+          <div class="form-group">
+          {{form.contraseña2.label}}
+          {{form.contraseña2}}
+        </div>
           
           <div class="form-group">
               {{form.bloqueado.label}}

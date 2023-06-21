@@ -11,11 +11,14 @@ class UsuarioForm(forms.ModelForm):
 
     class Meta: 
         model= Usuario
-        fields = ['rut', 'nombre', 'correo', 'bloqueado']
+        fields = ['rut', 'nombre','apellidos', 'correo', 'contraseña','contraseña2','bloqueado']
         labels ={
-            'id': 'Id Producto:', 
+            'rut': 'rut:', 
             'nombre': 'Nombre:', 
+            'apellidos': 'Apellidos:', 
             'correo': 'Correo:', 
+            'contraseña': 'Contraseña:', 
+            'contraseña2': 'Repetir contraseña:', 
             'bloqueado': 'Bloqueado:',
         }
         widgets={
@@ -33,11 +36,32 @@ class UsuarioForm(forms.ModelForm):
                     'id': 'nombre'
                 }
             ), 
+            'apellidos': forms.TextInput(
+                attrs={
+                    'class': 'form-control', 
+                    'placeholder': 'Ingrese apellidos', 
+                    'id': 'apellidos'
+                }
+            ), 
             'correo': forms.EmailInput(
                 attrs={
                     'class': 'form-control', 
                     'placeholder': 'ejemplo@duocuc.cl', 
                     'id': 'correo'
+                }
+            ), 
+            'contraseña': forms.TextInput(
+                attrs={
+                    'class': 'form-control', 
+                    'placeholder': '********', 
+                    'id': 'contraseña'
+                }
+            ), 
+            'contraseña2': forms.TextInput(
+                attrs={
+                    'class': 'form-control', 
+                    'placeholder': '********', 
+                    'id': 'contraseña2'
                 }
             ), 
             'bloqueado': forms.CheckboxInput(

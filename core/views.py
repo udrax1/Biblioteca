@@ -62,17 +62,17 @@ def eliminar_usuarios(request, id):
     messages.success(request, "El usuario fue eliminado correctamente.")
     return redirect("usuarios")
 
-def mod_usuarios(request, id): 
-
-    usuario= Usuario.objects.get(rut=id)
-    datos={
-        'form': UsuarioForm(instance=usuario)
-    }
-    if request.method=='POST':
-        formulario=UsuarioForm(data = request.POST, instance=usuario, files=request.FILES)
+def mod_usuarios(request, id):
+    usuario = Usuario.objects.get(rut=id)
+    datos = {'form': UsuarioForm(instance=usuario)}
+    
+    if request.method == 'POST':
+        formulario = UsuarioForm(data=request.POST, instance=usuario, files=request.FILES)
+        
         if formulario.is_valid():
-            formulario.save() #lo sobreescribe
+            formulario.fields_to_exclude = ['contraseña', 'contraseña2']
+            formulario.save()  # lo sobreescribe
             messages.success(request, "El usuario fue modificado correctamente.")
             return redirect('usuarios')
-        
+    
     return render(request, 'mod_usuario.html', datos)
