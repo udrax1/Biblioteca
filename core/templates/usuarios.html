@@ -65,9 +65,7 @@ footer {
         
       <ul class="navbar-nav ">
         
-        <li class="nav-item">
-          <a class="nav-link yellow" href="salas">Salas</a>
-        </li>
+
         <li class="nav-item">
           <a class="nav-link yellow" href="horarios">Horarios</a>
         </li>
@@ -111,37 +109,36 @@ footer {
 
 
     <div class="table-responsive">
-    <table class="table table-bordered" style="color: white; background-color: black;">
-        <thead>
-            <tr>
-                <th>Rut</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Correo</th>
-                <th>Bloqueado</th>
-                <th>Opciones</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            {% for i in usuarios %} <!--vehiculos que esta dentro de datos en views.py -->
-            <tr>
-            <td>{{i.rut}}</td>
-            <td>{{i.nombre}}</td>
-            <td>{{i.apellidos}}</td>
-            <td>{{i.correo}}</td>
-            <td class="{% if i.bloqueado %}rojo{% else %}verde{% endif %}">
-              {% if i.bloqueado %}Bloqueado{% else %}Sin Bloquear{% endif %}           
-            <td>
-              <a href="{% url 'mod_usuarios' i.rut %} " class="btn btn-info btn-sm">Modificar</a><br><br>
-              <a href="#" onclick="eliminarUsuario({{i.rut}})" class="btn btn-danger btn-sm">Eliminar</a>
-          </td>
-
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+      <table class="table table-bordered" style="color: white; background-color: black;">
+          <thead>
+              <tr>
+                  <th>id</th>
+                  <th>Nombre</th>
+                  <th>Apellidos</th>
+                  <th>Correo</th>
+                  <th>Bloqueado</th>
+                  <th>Opciones</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for usuario in data %}
+              <tr>
+                  <td>{{ usuario.id }}</td>
+                  <td>{{ usuario.nombre }}</td>
+                  <td>{{ usuario.apellidos }}</td>
+                  <td>{{ usuario.correo }}</td>
+                  <td class="{% if usuario.bloqueado %}rojo{% else %}verde{% endif %}">
+                      {% if usuario.bloqueado %}Bloqueado{% else %}Sin Bloquear{% endif %}
+                  </td>
+                  <td>
+                    <a href="{% url 'mod_usuarios' usuario.id %}" class="btn btn-info btn-sm">Modificar</a><br><br>
+                    <a href="#" onclick="eliminarUsuario({{ usuario.id }})" class="btn btn-danger btn-sm">Eliminar</a>
+                  </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+  </div>
 <br><br><br><br><br><br>
   
   <footer>

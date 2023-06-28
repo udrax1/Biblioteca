@@ -22,57 +22,104 @@ def inicio(request):
 
 
 def horarios(request):
-     with open('db.json') as json_file:
-        data = json.load(json_file)
-    
-     return render(request, 'horarios.html', {'data': data})
+    response = requests.get('http://localhost:3000/salas')
+    data = response.json()
+    if request.method == 'PUT':
+        horario_id = request.POST.get('horario_id')
+        nuevo_estado = request.POST.get('nuevo_estado')
 
 
+        response = requests.put(f'http://localhost:3000/salas/{horario_id}', json={'reservada': nuevo_estado})
+        data = response.json()
 
-def salas(request):
-    return render(request, 'salas.html')
-
+        
+    return render(request, 'horarios.html', {'data': data})
 
 
 
 def form_usuarios(request):
-    if request.method=='POST':
-        usuario_form = UsuarioForm(request.POST ,request.FILES)
+    if request.method == 'POST':
+        usuario_form = UsuarioForm(request.POST, request.FILES)
         if usuario_form.is_valid():
             usuario_form.save()
-            messages.success(request, "Se ingreso el Usuario correctamente.")
+            messages.success(request, "Se ingresó el Usuario correctamente.")
             return redirect('usuarios')
     else:
-        usuario_form= UsuarioForm()
-    return render(request, 'form_usuarios.html', {'usuario_form': usuario_form})
+        usuario_form = UsuarioForm()
+    
+    response = requests.get('http://localhost:3300/usuario')
+    data = response.json()
+    
+    if request.method == 'POST':
+        # Obtener los datos ingresados en el formulario
+        nombre = request.POST.get('nombre')
+        apellidos = request.POST.get('apellidos')
+        correo = request.POST.get('correo')
+        password = request.POST.get('pass')
+        repassword = request.POST.get('repass')
+        bloqueado = request.POST.get('bloqueado')
+        
+        # Crear un diccionario con los datos del nuevo usuario
+        nuevo_usuario = {
+            'nombre': nombre,
+            'apellidos': apellidos,
+            'correo': correo,
+            'pass': password,
+            'repass': repassword,
+            'bloqueado': bloqueado
+        }
+        
+        # Realizar una solicitud POST al servidor JSON
+        post_response = requests.post('http://localhost:3300/usuario', json=nuevo_usuario)
+        
+        if post_response.status_code == 201:
+            messages.success(request, "Se ingresó el Usuario correctamente mediante POST.")
+            return redirect('usuarios')
+        else:
+            messages.error(request, "Error al ingresar el Usuario mediante POST.")
+    
+    return render(request, 'form_usuarios.html', {'usuario_form': usuario_form, 'data': data})
 
 
 
 def usuarios(request):
-    usuarios = Usuario.objects.all() #traigo todos los objetos de la clase Producto y los almaceno en 
-    datosUsuarios = {
-        'usuarios': usuarios  #diccionario para llamarlo desde el html
-    }
-    return render (request, 'usuarios.html', datosUsuarios)
+    response = requests.get('http://localhost:3300/usuario')
+    data = response.json()
+    return render(request, 'usuarios.html', {'data': data})
 
 
-def eliminar_usuarios(request, id):
-    usuarios= Usuario.objects.get(rut=id)
-    usuarios.delete()
-    messages.success(request, "El usuario fue eliminado correctamente.")
-    return redirect("usuarios")
+def eliminar_usuarios(request, usuario_id):
+    url = f'http://localhost:3300/usuario/{usuario_id}'
+
+    response = requests.delete(url)
+
+    if response.status_code == 200:
+        messages.success(request, "El usuario ha sido eliminado correctamente.")
+    else:
+        messages.error(request, "No se pudo eliminar el usuario.")
+
+    return redirect('usuarios')
 
 def mod_usuarios(request, id):
-    usuario = Usuario.objects.get(rut=id)
-    datos = {'form': UsuarioForm(instance=usuario)}
-    
+    url = f'http://localhost:3300/usuario/{id}'
+    response = requests.get(url)
+    usuario_data = response.json()
+
     if request.method == 'POST':
-        formulario = UsuarioForm(data=request.POST, instance=usuario, files=request.FILES)
-        
-        if formulario.is_valid():
-            formulario.fields_to_exclude = ['contraseña', 'contraseña2']
-            formulario.save()  # lo sobreescribe
+        usuario_data['nombre'] = request.POST.get('nombre')
+        usuario_data['apellidos'] = request.POST.get('apellidos')
+        usuario_data['correo'] = request.POST.get('correo')
+        usuario_data['pass'] = request.POST.get('pass')
+        usuario_data['repass'] = request.POST.get('repass')
+        usuario_data['bloqueado'] = request.POST.get('bloqueado')
+
+        response = requests.put(url, json=usuario_data)
+
+        if response.status_code == 200:
             messages.success(request, "El usuario fue modificado correctamente.")
             return redirect('usuarios')
-    
+        else:
+            messages.error(request, "No se pudo modificar el usuario.")
+
+    datos = {'usuario_data': usuario_data}
     return render(request, 'mod_usuario.html', datos)
